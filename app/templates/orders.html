@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}My Orders{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h2 class="mb-4"><i class="fas fa-box"></i> My Orders</h2>
+
+    {% if orders %}
+        {% for order in orders %}
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center bg-white py-3">
+                <div>
+                    <strong>Order #{{ order['id'] }}</strong>
+                    <span class="ms-3 text-muted small">
+                        {{ order.created_at.strftime('%B %d, %Y at %I:%M %p') }}
+                    </span>
+                </div>
+                <div>
+                    {% if order['status'] == 'placed' %}
+                        <span class="badge bg-warning text-dark">Placed</span>
+                    {% elif order['status'] == 'confirmed' %}
+                        <span class="badge bg-success">Confirmed</span>
+                    {% elif order['status'] == 'shipped' %}
+                        <span class="badge bg-primary">Shipped</span>
+                    {% elif order['status'] == 'delivered' %}
+                        <span class="badge bg-success">Delivered</span>
+                    {% elif order['status'] == 'cancelled' %}
+                        <span class="badge bg-danger">Cancelled</span>
+                    {% else %}
+                        <span class="badge bg-secondary">{{ order.status|title }}</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    {% for item in order['items'] %}
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="d-flex border rounded p-2">
+                            {% if item.image_url %}
+                                <img src="{{ item.image_url }}" alt="{{ item.prod_name }}" class="rounded me-3" style="width:80px;height:80px;object-fit:cover;">
+                            {% else %}
+                                <div class="d-flex align-items-center justify-content-center bg-light rounded me-3" style="width:80px;height:80px;">
+                                    <i class="fas fa-image fa-2x text-muted"></i>
+                                </div>
+                            {% endif %}
+                            <div>
+                                <h6 class="mb-1">{{ item.prod_name }}</h6>
+                                <p class="text-muted mb-1">Qty: {{ item.quantity }}</p>
+                                <p class="mb-0 fw-bold text-success">₹{{ "%.2f"|format(item.price * item.quantity) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <div>
+                        <strong>Total: ₹{{ "%.2f"|format(order['total']) }}</strong>
+                        <small class="text-muted ms-2">({{ order.payment_method|replace('_',' ')|title }})</small>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a href="{{ url_for('order_detail', order_id=order.id) }}" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-map-marker-alt"></i> Track Order
+                        </a>
+
+                        {% if order['status'] not in ['delivered','cancelled'] %}
+                        <form method="POST" action="{{ url_for('cancel_order', order_id=order.id) }}" onsubmit="return confirm('Are you sure?');">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+
+                {% if order['tracking_number'] %}
+                <div class="mt-2">
+                    <small class="text-muted">
+                        Tracking: <strong>{{ order['tracking_number'] }}</strong>
+                        {% if order['estimated_delivery'] %}
+                        | Est. Delivery: {{ order.estimated_delivery.strftime('%B %d, %Y') }}
+                        {% endif %}
+                    </small>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="text-center py-5">
+            <i class="fas fa-box-open fa-5x text-muted mb-4" style="opacity:0.3;"></i>
+            <h3 class="text-muted">No orders yet</h3>
+            <p class="text-muted">Start shopping to see your orders here!</p>
+            <a href="{{ url_for('index') }}" class="btn btn-primary"><i class="fas fa-shopping-bag"></i> Start Shopping</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

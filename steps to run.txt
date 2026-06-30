@@ -1,0 +1,5 @@
+first command in terminal to activate .venv:
+& C:/Users/Lenovo/Videos/fashion-recommendation-system/.venv/Scripts/Activate.ps1
+
+second:
+python run.py

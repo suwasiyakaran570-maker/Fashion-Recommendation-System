@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+{% block title %}Register – Fabricji Fashion{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-4">
+    <div class="col-md-7">
+        <div class="card shadow-lg" style="border-radius: 16px; overflow: hidden;">
+            <!-- Header -->
+            <div style="background: linear-gradient(135deg, #8B8589 0%, #5C5459 100%); padding: 28px 24px; text-align: center;">
+                <i class="fas fa-user-plus fa-3x text-white mb-2"></i>
+                <h3 class="text-white mb-0">Create Account</h3>
+                <p class="text-white-50 mb-0">Join Fabricji Fashion for exclusive offers</p>
+            </div>
+
+            <div class="card-body p-4">
+                <!-- Flash Messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+                <form method="POST" action="{{ url_for('register') }}" id="registerForm">
+                    <!-- ── Section: Basic Info ── -->
+                    <h6 class="fw-semibold text-muted text-uppercase mb-3" style="letter-spacing: 0.8px;">
+                        <i class="fas fa-info-circle me-2" style="color: #5C5459;"></i>Basic Information
+                    </h6>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="username" class="form-label fw-semibold">Username <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fas fa-user text-muted"></i></span>
+                                <input type="text" class="form-control" id="username" name="username"
+                                       placeholder="Enter Your Name" required style="border-radius: 0 8px 8px 0;">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label fw-semibold">Email <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fas fa-envelope text-muted"></i></span>
+                                <input type="email" class="form-control" id="email" name="email"
+                                       placeholder="your@email.com" required style="border-radius: 0 8px 8px 0;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="password" class="form-label fw-semibold">Password <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fas fa-lock text-muted"></i></span>
+                                <input type="password" class="form-control" id="password" name="password"
+                                       placeholder="Min 6 characters" required minlength="6"
+                                       style="border-radius: 0 8px 8px 0;">
+                            </div>
+                            <small class="text-muted">Minimum 6 characters</small>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="gender" class="form-label fw-semibold">Gender <span class="text-danger">*</span></label>
+                            <select class="form-select" id="gender" name="gender" required style="border-radius: 8px;">
+                                <option value="" disabled selected>Select gender</option>
+                                <option value="Men">Men</option>
+                                <option value="Women">Women</option>
+                                <option value="Unspecified">Prefer not to say</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- ── Section: Personal Details ── -->
+                    <hr class="my-3">
+                    <h6 class="fw-semibold text-muted text-uppercase mb-3" style="letter-spacing: 0.8px;">
+                        <i class="fas fa-id-card me-2" style="color: #8B8589;"></i>Personal Details
+                    </h6>
+
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="age" class="form-label fw-semibold">Age <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fas fa-birthday-cake text-muted"></i></span>
+                                <input type="number" class="form-control" id="age" name="age"
+                                       placeholder="25" min="13" max="120" required
+                                       style="border-radius: 0 8px 8px 0;">
+                            </div>
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <label class="form-label fw-semibold">Mobile Number</label>
+                            <div class="input-group">
+                                <select class="form-select" id="country_code" name="country_code"
+                                        style="max-width: 120px; border-radius: 8px 0 0 8px; font-size: 0.9rem;">
+                                    <option value="">Code</option>
+                                    <option value="+91">+91 🇮🇳</option>
+                                    <option value="+1">+1 🇺🇸</option>
+                                    <option value="+44">+44 🇬🇧</option>
+                                    <option value="+61">+61 🇦🇺</option>
+                                    <option value="+81">+81 🇯🇵</option>
+                                    <option value="+82">+82 🇰🇷</option>
+                                    <option value="+86">+86 🇨🇳</option>
+                                    <option value="+7">+7 🇷🇺</option>
+                                    <option value="+49">+49 🇩🇪</option>
+                                    <option value="+33">+33 🇫🇷</option>
+                                    <option value="+39">+39 🇮🇹</option>
+                                    <option value="+34">+34 🇪🇸</option>
+                                    <option value="+55">+55 🇧🇷</option>
+                                    <option value="+27">+27 🇿🇦</option>
+                                    <option value="+60">+60 🇲🇾</option>
+                                    <option value="+65">+65 🇸🇬</option>
+                                    <option value="+66">+66 🇹🇭</option>
+                                    <option value="+62">+62 🇮🇩</option>
+                                    <option value="+63">+63 🇵🇭</option>
+                                    <option value="+64">+64 🇳🇿</option>
+                                    <option value="+20">+20 🇪🇬</option>
+                                    <option value="+92">+92 🇵🇰</option>
+                                    <option value="+94">+94 🇱🇰</option>
+                                    <option value="+977">+977 🇳🇵</option>
+                                    <option value="+880">+880 🇧🇩</option>
+                                </select>
+                                <input type="text" class="form-control" id="mobile_number" name="mobile_number"
+                                       placeholder="9876543210" pattern="[0-9]*"
+                                       style="border-radius: 0 8px 8px 0;">
+                            </div>
+                            <small class="text-muted">Used for OTP during password reset</small>
+                        </div>
+                    </div>
+
+                    <!-- ── Section: Security Questions (Mandatory) ── -->
+                    <hr class="my-3">
+                    <h6 class="fw-semibold text-muted text-uppercase mb-1" style="letter-spacing: 0.8px;">
+                        <i class="fas fa-shield-alt me-2" style="color:#5C5459;"></i>Security Questions <span class="text-danger">*</span>
+                    </h6>
+                    <p class="text-muted small mb-3">These are used to verify your identity when resetting your password.</p>
+
+                    <div class="mb-3">
+                        <label for="security_question_1" class="form-label fw-semibold">Question 1 <span class="text-danger">*</span></label>
+                        <select class="form-select" id="security_question_1" name="security_question_1" required style="border-radius: 8px;">
+                            <option value="" disabled selected>Choose a question</option>
+                            {% for q in security_questions %}
+                            <option value="{{ q }}">{{ q }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="security_answer_1" class="form-label fw-semibold">Answer 1 <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="fas fa-key text-muted"></i></span>
+                            <input type="text" class="form-control" id="security_answer_1" name="security_answer_1"
+                                   placeholder="Your answer" required style="border-radius: 0 8px 8px 0;">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="security_question_2" class="form-label fw-semibold">Question 2 <span class="text-danger">*</span></label>
+                        <select class="form-select" id="security_question_2" name="security_question_2" required style="border-radius: 8px;">
+                            <option value="" disabled selected>Choose a different question</option>
+                            {% for q in security_questions %}
+                            <option value="{{ q }}">{{ q }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="security_answer_2" class="form-label fw-semibold">Answer 2 <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="fas fa-key text-muted"></i></span>
+                            <input type="text" class="form-control" id="security_answer_2" name="security_answer_2"
+                                   placeholder="Your answer" required style="border-radius: 0 8px 8px 0;">
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold"
+                            style="background: linear-gradient(135deg, #8B8589, #5C5459); border: none; border-radius: 8px; font-size: 1rem;">
+                        <i class="fas fa-user-plus me-2"></i> Create Account
+                    </button>
+                </form>
+
+                <!-- Already have account -->
+                <div class="text-center mt-4">
+                    <span class="text-muted" style="font-size: 0.85rem;">Already have an account?</span>
+                    <a href="{{ url_for('login') }}" class="text-decoration-none ms-1" style="color: #8B8589; font-size: 0.85rem;">
+                        Login here
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Prevent selecting the same question for both
+document.getElementById('security_question_1').addEventListener('change', function() {
+    var val = this.value;
+    var q2 = document.getElementById('security_question_2');
+    Array.from(q2.options).forEach(function(opt) {
+        opt.disabled = (opt.value === val && opt.value !== '');
+    });
+});
+document.getElementById('security_question_2').addEventListener('change', function() {
+    var val = this.value;
+    var q1 = document.getElementById('security_question_1');
+    Array.from(q1.options).forEach(function(opt) {
+        opt.disabled = (opt.value === val && opt.value !== '');
+    });
+});
+
+// Country code validation: if mobile is entered, country code is required
+document.getElementById('registerForm').addEventListener('submit', function(e) {
+    var mobile = document.getElementById('mobile_number').value.trim();
+    var code = document.getElementById('country_code').value;
+    if (mobile && !code) {
+        e.preventDefault();
+        alert('Please select a country code for the mobile number.');
+    }
+});
+</script>
+{% endblock %}

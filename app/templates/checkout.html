@@ -1,0 +1,449 @@
+{% extends "base.html" %}
+
+{% block title %}Checkout - 🧣 FabricJi{% endblock %}
+
+{% block extra_css %}
+<style>
+    .checkout-section {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        margin-bottom: 30px;
+    }
+    
+    .cart-summary {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 100px;
+    }
+    
+    .order-summary-item {
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .order-summary-item:last-child {
+        border-bottom: none;
+    }
+    
+    .form-control:focus, .form-check-input:focus {
+        border-color: #1abc9c;
+        box-shadow: 0 0 0 0.2rem rgba(26, 188, 156, 0.25);
+    }
+    
+    .payment-method-card {
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .payment-method-card:hover {
+        border-color: #1abc9c;
+        background: rgba(26, 188, 156, 0.05);
+    }
+    
+    .payment-method-card.selected {
+        border-color: #1abc9c;
+        background: rgba(26, 188, 156, 0.1);
+    }
+    
+    .payment-method-card input[type="radio"] {
+        transform: scale(1.3);
+    }
+    
+    .saved-address-card {
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .saved-address-card:hover {
+        border-color: #1abc9c;
+    }
+    
+    .saved-address-card.selected {
+        border-color: #1abc9c;
+        background: rgba(26, 188, 156, 0.05);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h2 class="mb-4"><i class="fas fa-shopping-bag me-2"></i>Checkout</h2>
+    
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Saved Addresses (if user has any) -->
+            {% if saved_addresses and saved_addresses|length > 0 %}
+            <div class="checkout-section">
+                <h4 class="mb-3"><i class="fas fa-map-marker-alt me-2"></i>Saved Addresses</h4>
+                <div id="savedAddresses">
+                    {% for addr in saved_addresses %}
+                    <div class="saved-address-card" onclick="selectSavedAddress({{ loop.index0 }})">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="saved_address" 
+                                   id="addr_{{ loop.index0 }}" value="{{ loop.index0 }}">
+                            <label class="form-check-label w-100" for="addr_{{ loop.index0 }}">
+                                <strong>{{ addr.name }}</strong><br>
+                                <small class="text-muted">
+                                    {{ addr.address }}<br>
+                                    {{ addr.city }}, {{ addr.state }} - {{ addr.pincode }}<br>
+                                    Phone: {{ addr.phone }}
+                                </small>
+                            </label>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="showNewAddressForm()">
+                    <i class="fas fa-plus me-2"></i>Add New Address
+                </button>
+                <hr>
+            </div>
+            {% endif %}
+            
+            <!-- Shipping Information -->
+            <div class="checkout-section" id="shippingSection">
+                <h4 class="mb-3"><i class="fas fa-shipping-fast me-2"></i>Shipping Information</h4>
+                <form method="POST" action="{{ url_for('process_payment') }}" id="checkout-form">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="full_name" class="form-label">Full Name *</label>
+                            <input type="text" class="form-control" id="full_name" name="full_name" 
+                                   value="{{ current_user.username if current_user.is_authenticated else '' }}" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" class="form-control" id="email" name="email" 
+                                   value="{{ current_user.email if current_user.is_authenticated else '' }}" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="phone" class="form-label">Phone Number *</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" 
+                                   value="{{ current_user.mobile_number if current_user.is_authenticated and current_user.mobile_number else '' }}"
+                                   placeholder="+91 1234567890" pattern="[0-9+\s-]+" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="alternate_phone" class="form-label">Alternate Phone</label>
+                            <input type="tel" class="form-control" id="alternate_phone" name="alternate_phone"
+                                   placeholder="+91 9876543210" pattern="[0-9+\s-]+">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="address_line1" class="form-label">Address Line 1 *</label>
+                        <input type="text" class="form-control" id="address_line1" name="address_line1" 
+                               placeholder="House No., Building Name, Street" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="address_line2" class="form-label">Address Line 2</label>
+                        <input type="text" class="form-control" id="address_line2" name="address_line2" 
+                               placeholder="Landmark, Area, Colony">
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="city" class="form-label">City *</label>
+                            <input type="text" class="form-control" id="city" name="city" 
+                                   placeholder="Mumbai" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="state" class="form-label">State *</label>
+                            <select class="form-control" id="state" name="state" required>
+                                <option value="">Select State</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="West Bengal">West Bengal</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="pincode" class="form-label">Pincode *</label>
+                            <input type="text" class="form-control" id="pincode" name="pincode" 
+                                   pattern="[0-9]{6}" placeholder="400001" maxlength="6" required>
+                            <small class="text-muted" id="deliveryEstimate"></small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="save_address" name="save_address">
+                        <label class="form-check-label" for="save_address">
+                            Save this address for future orders
+                        </label>
+                    </div>
+                    
+                    <!-- Payment Method -->
+                    <div class="checkout-section mt-4" style="background: #f8f9fa; padding: 20px;">
+                        <h4 class="mb-3"><i class="fas fa-credit-card me-2"></i>Payment Method</h4>
+                        
+                        <div class="payment-method-card" onclick="selectPayment('cod')">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="payment_method" 
+                                       id="cod" value="cod" checked>
+                                <label class="form-check-label w-100" for="cod">
+                                    <i class="fas fa-money-bill-wave text-success me-2"></i>
+                                    <strong>Cash on Delivery</strong>
+                                    <small class="d-block text-muted mt-1">Pay when you receive</small>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-method-card" onclick="selectPayment('card')">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="payment_method" 
+                                       id="card" value="card">
+                                <label class="form-check-label w-100" for="card">
+                                    <i class="fas fa-credit-card text-primary me-2"></i>
+                                    <strong>Credit/Debit Card</strong>
+                                    <small class="d-block text-muted mt-1">Visa, Mastercard, Rupay</small>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-method-card" onclick="selectPayment('upi')">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="payment_method" 
+                                       id="upi" value="upi">
+                                <label class="form-check-label w-100" for="upi">
+                                    <i class="fas fa-mobile-alt text-info me-2"></i>
+                                    <strong>UPI</strong>
+                                    <small class="d-block text-muted mt-1">Google Pay, PhonePe, Paytm</small>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-method-card" onclick="selectPayment('netbanking')">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="payment_method" 
+                                       id="netbanking" value="netbanking">
+                                <label class="form-check-label w-100" for="netbanking">
+                                    <i class="fas fa-university text-warning me-2"></i>
+                                    <strong>Net Banking</strong>
+                                    <small class="d-block text-muted mt-1">All major banks</small>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-success btn-lg" id="placeOrderBtn">
+                            <i class="fas fa-check-circle me-2"></i>Place Order - ₹{{ "%.2f"|format(total) }}
+                        </button>
+                        <a href="{{ url_for('cart') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Back to Cart
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Order Summary Sidebar -->
+        <div class="col-lg-4">
+            <div class="cart-summary">
+                <h5 class="mb-4"><i class="fas fa-receipt me-2"></i>Order Summary</h5>
+                
+                <div style="max-height: 400px; overflow-y: auto;">
+                    {% for item in cart_items %}
+                    <div class="order-summary-item">
+                        <div class="d-flex align-items-center">
+                            {% if item.get('image_url') %}
+                            <img src="{{ item['image_url'] }}" alt="{{ item.get('prod_name', 'Product') }}" 
+                                 style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+                            {% else %}
+                            <div style="width: 60px; height: 60px; background: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-image text-muted"></i>
+                            </div>
+                            {% endif %}
+                            <div class="ms-3 flex-grow-1">
+                                <h6 class="mb-1" style="font-size: 0.9rem;">{{ item.get('prod_name', 'Product')[:30] }}...</h6>
+                                <small class="text-muted">Qty: {{ item.get('quantity', 1) }}</small>
+                            </div>
+                            <div class="text-end">
+                                <strong style="color: #1abc9c;">₹{{ "%.2f"|format(item.get('price', 0) * item.get('quantity', 1)) }}</strong>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <hr>
+                
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Subtotal ({{ cart_items|length }} items):</span>
+                    <strong>₹{{ "%.2f"|format(subtotal) }}</strong>
+                </div>
+                
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Shipping:</span>
+                    <strong class="text-{% if shipping == 0 %}success{% else %}muted{% endif %}">
+                        {% if shipping == 0 %}FREE{% else %}₹{{ "%.2f"|format(shipping) }}{% endif %}
+                    </strong>
+                </div>
+                
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Tax (18% GST):</span>
+                    <strong>₹{{ "%.2f"|format(tax) }}</strong>
+                </div>
+                
+                <hr>
+                
+                <div class="d-flex justify-content-between mb-3">
+                    <h5>Total:</h5>
+                    <h5 style="color: #1abc9c;">₹{{ "%.2f"|format(total) }}</h5>
+                </div>
+                
+                {% if subtotal < 999 %}
+                <div class="alert alert-info" style="font-size: 0.85rem;">
+                    <i class="fas fa-truck me-2"></i>
+                    Add ₹{{ "%.2f"|format(999 - subtotal) }} more for FREE shipping!
+                </div>
+                {% else %}
+                <div class="alert alert-success" style="font-size: 0.85rem;">
+                    <i class="fas fa-check-circle me-2"></i>
+                    Yay! You get FREE shipping
+                </div>
+                {% endif %}
+                
+                <!-- Estimated Delivery -->
+                <div class="alert alert-warning" style="font-size: 0.85rem;">
+                    <i class="fas fa-clock me-2"></i>
+                    <strong>Estimated Delivery:</strong><br>
+                    <span id="estimatedDelivery">6 hours - 3 days</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Select payment method
+function selectPayment(method) {
+    document.querySelectorAll('.payment-method-card').forEach(card => {
+        card.classList.remove('selected');
+    });
+    event.currentTarget.classList.add('selected');
+    document.getElementById(method).checked = true;
+}
+
+// Select saved address
+function selectSavedAddress(index) {
+    document.querySelectorAll('.saved-address-card').forEach(card => {
+        card.classList.remove('selected');
+    });
+    event.currentTarget.classList.add('selected');
+    
+    // Here you would populate the form with saved address data
+    // For now, we'll just select the radio button
+}
+
+// Show new address form
+function showNewAddressForm() {
+    document.querySelectorAll('.saved-address-card').forEach(card => {
+        card.classList.remove('selected');
+    });
+    document.querySelectorAll('input[name="saved_address"]').forEach(radio => {
+        radio.checked = false;
+    });
+    document.getElementById('shippingSection').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('full_name').focus();
+}
+
+// Pincode validation and delivery estimate
+document.getElementById('pincode').addEventListener('input', function(e) {
+    const pincode = e.target.value;
+    const estimate = document.getElementById('deliveryEstimate');
+    const deliveryBox = document.getElementById('estimatedDelivery');
+    
+    if (pincode.length === 6) {
+        // Simulate pincode check
+        const firstDigit = parseInt(pincode[0]);
+        let deliveryText = '';
+        
+        if (firstDigit >= 4 && firstDigit <= 5) {
+            // Mumbai, Pune area - same day/next day
+            deliveryText = 'Same day / Next day delivery';
+            if (deliveryBox) deliveryBox.textContent = '6 - 24 hours';
+        } else if (firstDigit >= 1 && firstDigit <= 3) {
+            // North India - 1-2 days
+            deliveryText = 'Express delivery (1-2 days)';
+            if (deliveryBox) deliveryBox.textContent = '1 - 2 days';
+        } else {
+            // Other areas - 2-3 days
+            deliveryText = 'Standard delivery (2-3 days)';
+            if (deliveryBox) deliveryBox.textContent = '2 - 3 days';
+        }
+        
+        estimate.innerHTML = `<i class="fas fa-truck text-success"></i> ${deliveryText}`;
+        estimate.style.color = '#1abc9c';
+    } else {
+        estimate.textContent = '';
+    }
+});
+
+// Form validation and submission
+document.getElementById('checkout-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const btn = document.getElementById('placeOrderBtn');
+    const originalHTML = btn.innerHTML;
+    
+    // Show loading state
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+    
+    // Validate form
+    const form = e.target;
+    if (!form.checkValidity()) {
+        e.stopPropagation();
+        btn.disabled = false;
+        btn.innerHTML = originalHTML;
+        form.classList.add('was-validated');
+        return;
+    }
+    
+    // Get payment method
+    const paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+    
+    // Confirm order
+    const confirmMsg = `Confirm your order of ₹{{ "%.2f"|format(total) }}?\n\nPayment: ${paymentMethod.toUpperCase()}`;
+    
+    if (confirm(confirmMsg)) {
+        // Submit the form
+        form.submit();
+    } else {
+        btn.disabled = false;
+        btn.innerHTML = originalHTML;
+    }
+});
+
+// Initialize - mark COD as selected
+document.querySelector('.payment-method-card').classList.add('selected');
+</script>
+{% endblock %}

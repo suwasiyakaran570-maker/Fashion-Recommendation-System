@@ -1,0 +1,583 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.prod_name }} - 🧣 FabricJi ✨{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+            <li class="breadcrumb-item active">{{ article.prod_name }}</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <!-- Product Image -->
+        <div class="col-md-6">
+            {% if article.image_url %}
+            <img src="{{ article.image_url }}" class="img-fluid rounded shadow product-detail-img" alt="{{ article.prod_name }}">
+            {% else %}
+            <div class="product-detail-img bg-light d-flex align-items-center justify-content-center rounded shadow">
+                <i class="fas fa-image fa-5x text-muted"></i>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Product Details -->
+        <div class="col-md-6">
+            <div class="product-detail-info">
+                <h1 class="mb-3">{{ article.prod_name }}</h1>
+                
+                <div class="mb-3">
+                    <span class="badge bg-primary">{{ article.product_type_name }}</span>
+                    {% if article.colour_group_name %}
+                    <span class="badge bg-secondary">{{ article.colour_group_name }}</span>
+                    {% endif %}
+                </div>
+                
+                <h2 class="text-success mb-4">₹{{ "%.2f"|format(article.price) }}</h2>
+                
+                {% if article.detail_desc %}
+                <div class="mb-4">
+                    <h5>Description</h5>
+                    <p class="text-muted">{{ article.detail_desc }}</p>
+                </div>
+                {% endif %}
+                
+                <div class="mb-4">
+                    <h5>Product Details</h5>
+                    <ul class="list-unstyled">
+                        {% if article.product_group_name %}
+                        <li><strong>Product Group:</strong> {{ article.product_group_name }}</li>
+                        {% endif %}
+                        {% if article.garment_group_name %}
+                        <li><strong>Garment Type:</strong> {{ article.garment_group_name }}</li>
+                        {% endif %}
+                        {% if article.department_name %}
+                        <li><strong>Department:</strong> {{ article.department_name }}</li>
+                        {% endif %}
+                        {% if article.section_name %}
+                        <li><strong>Section:</strong> {{ article.section_name }}</li>
+                        {% endif %}
+                    </ul>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="d-grid gap-3 mb-3">
+                    {% if current_user.is_authenticated %}
+                    <!-- BUY NOW BUTTON (Primary Action) -->
+                    <form method="POST" action="{{ url_for('buy_now', article_id=article.article_id) }}">
+                        <button type="submit" class="btn btn-success btn-lg w-100">
+                            <i class="fas fa-bolt"></i> Buy Now
+                        </button>
+                    </form>
+                    
+                    <!-- ADD TO CART BUTTON -->
+                    <form method="POST" action="{{ url_for('add_to_cart', article_id=article.article_id) }}">
+                        <button type="submit" class="btn btn-outline-success btn-lg w-100">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </form>
+                    {% else %}
+                    <!-- LOGIN REQUIRED BUTTONS -->
+                    <a href="{{ url_for('login', next=request.url) }}" class="btn btn-success btn-lg w-100">
+                        <i class="fas fa-bolt"></i> Buy Now (Login Required)
+                    </a>
+                    <a href="{{ url_for('login', next=request.url) }}" class="btn btn-outline-success btn-lg w-100">
+                        <i class="fas fa-cart-plus"></i> Add to Cart (Login Required)
+                    </a>
+                    {% endif %}
+                    
+                    <!-- 3D TRY-ON -->
+                    <a href="{{ url_for('tryon', article_id=article.article_id) }}" class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-cube"></i> 3D Try-On
+                    </a>
+                </div>
+                
+                <div class="alert alert-info">
+                    <h6><i class="fas fa-truck"></i> Free shipping on orders above ₹999</h6>
+                    <h6><i class="fas fa-undo"></i> Easy 30-day returns</h6>
+                    <h6><i class="fas fa-shield-alt"></i> 100% secure payments</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Complementary Items: Complete the Look -->
+    {% if complementary %}
+    <hr class="my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0"><i class="fas fa-magic me-2" style="color: #667eea;"></i>Complete the Look</h3>
+        <button class="btn btn-sm btn-outline-secondary" onclick="showFeedbackModal('complementary')">
+            <i class="fas fa-comment-dots me-1"></i> Rate These
+        </button>
+    </div>
+    
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-6 g-4">
+        {% for comp in complementary %}
+        <div class="col">
+            <div class="card h-100">
+                {% if comp.image_url %}
+                <img src="{{ comp.image_url }}" class="card-img-top product-img-small" alt="{{ comp.prod_name }}">
+                {% else %}
+                <div class="card-img-top product-img-small bg-light d-flex align-items-center justify-content-center">
+                    <i class="fas fa-image fa-2x text-muted"></i>
+                </div>
+                {% endif %}
+                <div class="card-body">
+                    <h6 class="card-title small">{{ comp.prod_name }}</h6>
+                    <p class="price-tag-small mb-2">₹{{ "%.2f"|format(comp.price) }}</p>
+                    <a href="{{ url_for('product_detail', article_id=comp.article_id) }}" class="btn btn-primary btn-sm w-100">
+                        View
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- OUTFIT RECOMMENDATIONS -->
+    {% if outfits %}
+    <hr class="my-5">
+    <div class="d-flex align-items-center mb-4">
+        <i class="fas fa-tshirt fa-2x me-3" style="color: #764ba2;"></i>
+        <div class="flex-grow-1">
+            <h3 class="mb-0">Complete Outfit Ideas</h3>
+            <p class="text-muted small mb-0">Styled combinations featuring this item</p>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary" onclick="showFeedbackModal('outfits')">
+            <i class="fas fa-comment-dots me-1"></i> Rate Outfits
+        </button>
+    </div>
+    
+    {% for outfit in outfits %}
+    <div class="outfit-card mb-4" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 24px; border-radius: 16px; border: 2px solid #dee2e6;">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <h5 class="mb-1" style="color: #764ba2; font-weight: 600;">
+                    <i class="fas fa-star me-2"></i>{{ outfit.outfit_name }}
+                </h5>
+                {% if outfit.style %}
+                <span class="badge badge-sm" style="background: 
+                    {% if outfit.style == 'formal' %}#2c3e50
+                    {% elif outfit.style == 'sporty' %}#e74c3c
+                    {% elif outfit.style == 'elegant' %}#8e44ad
+                    {% else %}#3498db{% endif %};">
+                    <i class="fas fa-{% if outfit.style == 'formal' %}briefcase{% elif outfit.style == 'sporty' %}running{% elif outfit.style == 'elegant' %}crown{% else %}tshirt{% endif %} me-1"></i>
+                    {{ outfit.style|capitalize }} Style
+                </span>
+                {% endif %}
+            </div>
+            <div class="text-end">
+                <small class="text-muted d-block">Total Outfit Price</small>
+                <h5 class="mb-0 text-success">₹{{ "%.2f"|format(outfit.total_price) }}</h5>
+            </div>
+        </div>
+        
+        <div class="row row-cols-2 row-cols-md-4 g-3">
+            {% for item in outfit['items'] %}
+            <div class="col">
+                <div class="card h-100" style="border: 2px solid {% if item.article_id == article.article_id %}#764ba2{% else %}#dee2e6{% endif %}; border-radius: 12px;">
+                    {% if item.article_id == article.article_id %}
+                    <div class="position-absolute top-0 end-0 m-2">
+                        <span class="badge" style="background: #764ba2;">Current Item</span>
+                    </div>
+                    {% endif %}
+                    
+                    {% if item.image_url %}
+                    <img src="{{ item.image_url }}" class="card-img-top" alt="{{ item.prod_name }}" style="height: 150px; object-fit: cover; border-radius: 10px 10px 0 0;">
+                    {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 150px;">
+                        <i class="fas fa-image fa-2x text-muted"></i>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="card-body p-2">
+                        <p class="small mb-1 text-muted" style="font-size: 0.7rem;">{{ item.product_type_name }}</p>
+                        <h6 class="small mb-1" style="font-size: 0.75rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            {{ item.prod_name }}
+                        </h6>
+                        <p class="mb-2" style="font-size: 0.85rem; font-weight: bold; color: #28a745;">
+                            ₹{{ "%.2f"|format(item.price) }}
+                        </p>
+                        {% if item.article_id != article.article_id %}
+                        <a href="{{ url_for('product_detail', article_id=item.article_id) }}" class="btn btn-sm btn-outline-primary w-100" style="font-size: 0.7rem; padding: 4px;">
+                            View
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="mt-3 text-center">
+            <button class="btn btn-success btn-sm" onclick='addOutfitToCart({{ outfit["items"] | tojson }})'>
+                <i class="fas fa-shopping-bag me-2"></i>Add Complete Outfit to Cart
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <!-- Recommendations -->
+    {% if recommendations %}
+    <hr class="my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0">You May Also Like</h3>
+        <!-- Feedback button for recommendations -->
+        <button class="btn btn-sm btn-outline-secondary" onclick="showFeedbackModal('recommendations')">
+            <i class="fas fa-comment-dots me-1"></i> Rate These
+        </button>
+    </div>
+    
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-6 g-4">
+        {% for rec in recommendations %}
+        <div class="col">
+            <div class="card h-100">
+                {% if rec.image_url %}
+                <img src="{{ rec.image_url }}" class="card-img-top product-img-small" alt="{{ rec.prod_name }}">
+                {% else %}
+                <div class="card-img-top product-img-small bg-light d-flex align-items-center justify-content-center">
+                    <i class="fas fa-image fa-2x text-muted"></i>
+                </div>
+                {% endif %}
+                <div class="card-body">
+                    <h6 class="card-title small">{{ rec.prod_name }}</h6>
+                    <p class="price-tag-small mb-2">₹{{ "%.2f"|format(rec.price) }}</p>
+                    <a href="{{ url_for('product_detail', article_id=rec.article_id) }}" class="btn btn-primary btn-sm w-100">
+                        View
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+<!-- FEEDBACK MODAL -->
+<div class="modal fade" id="feedbackModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 16px; border: none; overflow: hidden;">
+            <div style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 20px; color: white;">
+                <h5 class="mb-0" id="feedbackModalTitle">
+                    <i class="fas fa-star me-2"></i>Rate Recommendations
+                </h5>
+            </div>
+            <div class="modal-body p-4">
+                <p class="text-muted mb-3" id="feedbackQuestion">How relevant were the recommendations?</p>
+                
+                <!-- Star Rating -->
+                <div class="text-center mb-3">
+                    <div class="star-rating" id="starRating">
+                        <i class="fas fa-star star" data-rating="1"></i>
+                        <i class="fas fa-star star" data-rating="2"></i>
+                        <i class="fas fa-star star" data-rating="3"></i>
+                        <i class="fas fa-star star" data-rating="4"></i>
+                        <i class="fas fa-star star" data-rating="5"></i>
+                    </div>
+                    <p class="mt-2 text-muted small" id="ratingText">Click a star to rate</p>
+                </div>
+                
+                <!-- Comment -->
+                <div class="mb-3">
+                    <label class="form-label small text-muted">Any additional comments? (optional)</label>
+                    <textarea class="form-control" id="feedbackComment" rows="3" 
+                              placeholder="Tell us what you think..."></textarea>
+                </div>
+                
+                <input type="hidden" id="feedbackType" value="">
+                <input type="hidden" id="feedbackRating" value="0">
+            </div>
+            <div class="modal-footer border-0 pt-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="submitFeedback()" 
+                        style="background: linear-gradient(135deg, #667eea, #764ba2); border: none;">
+                    Submit Feedback
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.product-detail-img {
+    max-height: 600px;
+    object-fit: contain;
+    width: 100%;
+}
+
+.product-detail-info {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-img-small {
+    height: 180px;
+    object-fit: cover;
+}
+
+.price-tag-small {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .product-detail-img {
+        max-height: 400px;
+    }
+}
+
+.outfit-card {
+    transition: all 0.3s ease;
+}
+
+.outfit-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(118, 75, 162, 0.2);
+}
+
+.star-rating .star {
+    font-size: 2rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.2s;
+    margin: 0 4px;
+}
+
+.star-rating .star:hover,
+.star-rating .star.active {
+    color: #FFD700;
+}
+</style>
+
+<script>
+// Outfit cart functionality
+async function addOutfitToCart(outfitItems) {
+    {% if current_user.is_authenticated %}
+    // User is logged in - add items
+    let successCount = 0;
+    let failCount = 0;
+    
+    for (const item of outfitItems) {
+        try {
+            const response = await fetch(`/add_to_cart/${item.article_id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+            });
+            
+            if (response.ok) {
+                successCount++;
+            } else {
+                failCount++;
+            }
+        } catch (error) {
+            console.error('Error adding item:', error);
+            failCount++;
+        }
+    }
+    
+    if (successCount > 0) {
+        // Update cart badge
+        if (typeof updateCartBadge === 'function') {
+            fetch('/api/cart/count')
+                .then(res => res.json())
+                .then(data => updateCartBadge(data.count))
+                .catch(err => console.log('Cart count update failed:', err));
+        }
+        
+        // Show success message (no Bootstrap dependency)
+        const alertDiv = document.createElement('div');
+        alertDiv.className = 'alert alert-success position-fixed';
+        alertDiv.style.cssText = 'top: 80px; right: 20px; z-index: 9999; min-width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 15px; border-radius: 8px; background: #d4edda; color: #155724; border: 1px solid #c3e6cb;';
+        alertDiv.innerHTML = `
+            <strong><i class="fas fa-check-circle me-2"></i>Success!</strong><br>
+            Added ${successCount} item${successCount > 1 ? 's' : ''} to your cart!
+            <button type="button" onclick="this.parentElement.remove()" style="float: right; background: none; border: none; font-size: 20px; cursor: pointer; color: #155724;">&times;</button>
+        `;
+        document.body.appendChild(alertDiv);
+        
+        // Auto-remove after 3 seconds
+        setTimeout(() => {
+            if (alertDiv.parentElement) {
+                alertDiv.remove();
+            }
+        }, 3000);
+        
+        if (failCount > 0) {
+            setTimeout(() => {
+                alert(`Note: ${failCount} item${failCount > 1 ? 's' : ''} could not be added.`);
+            }, 100);
+        }
+    } else {
+        alert('❌ Failed to add items to cart. Please try again.');
+    }
+    {% else %}
+    // User not logged in - redirect to login
+    alert('Please login to add items to cart');
+    window.location.href = "{{ url_for('login', next=request.url) }}";
+    {% endif %}
+}
+
+// Feedback system
+let currentFeedbackType = '';
+let currentRating = 0;
+const feedbackModal = new bootstrap.Modal(document.getElementById('feedbackModal'));
+
+function showFeedbackModal(type) {
+    currentFeedbackType = type;
+    currentRating = 0;
+    
+    document.getElementById('feedbackType').value = type;
+    document.getElementById('feedbackRating').value = '0';
+    document.getElementById('feedbackComment').value = '';
+    
+    // Update modal title based on type
+    const titles = {
+        'recommendations': 'Rate "You May Also Like"',
+        'complementary': 'Rate "Complete the Look"',
+        'outfits': 'Rate "Complete Outfit Ideas"'
+    };
+    
+    const questions = {
+        'recommendations': 'How relevant were these product recommendations?',
+        'complementary': 'How well do these items complement the product?',
+        'outfits': 'How useful are these complete outfit suggestions?'
+    };
+    
+    document.getElementById('feedbackModalTitle').innerHTML = 
+        `<i class="fas fa-star me-2"></i>${titles[type] || 'Rate Recommendations'}`;
+    document.getElementById('feedbackQuestion').textContent = questions[type] || 'How relevant were the recommendations?';
+    
+    // Reset stars
+    document.querySelectorAll('.star').forEach(star => {
+        star.classList.remove('active');
+    });
+    document.getElementById('ratingText').textContent = 'Click a star to rate';
+    
+    feedbackModal.show();
+}
+
+// Star rating interaction
+document.querySelectorAll('.star').forEach(star => {
+    star.addEventListener('click', function() {
+        currentRating = parseInt(this.dataset.rating);
+        document.getElementById('feedbackRating').value = currentRating;
+        
+        // Update star display
+        document.querySelectorAll('.star').forEach(s => {
+            if (parseInt(s.dataset.rating) <= currentRating) {
+                s.classList.add('active');
+            } else {
+                s.classList.remove('active');
+            }
+        });
+        
+        // Update text
+        const texts = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+        document.getElementById('ratingText').textContent = texts[currentRating];
+    });
+    
+    star.addEventListener('mouseenter', function() {
+        const rating = parseInt(this.dataset.rating);
+        document.querySelectorAll('.star').forEach(s => {
+            if (parseInt(s.dataset.rating) <= rating) {
+                s.style.color = '#FFD700';
+            } else {
+                s.style.color = '#ddd';
+            }
+        });
+    });
+});
+
+document.getElementById('starRating').addEventListener('mouseleave', function() {
+    document.querySelectorAll('.star').forEach(s => {
+        if (parseInt(s.dataset.rating) <= currentRating) {
+            s.style.color = '#FFD700';
+        } else {
+            s.style.color = '#ddd';
+        }
+    });
+});
+
+async function submitFeedback() {
+    const rating = parseInt(document.getElementById('feedbackRating').value);
+    const comment = document.getElementById('feedbackComment').value.trim();
+    const type = document.getElementById('feedbackType').value;
+    
+    if (rating === 0) {
+        alert('Please select a star rating');
+        return;
+    }
+    
+    try {
+        const response = await fetch("{{ url_for('submit_feedback') }}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                article_id: {{ article.article_id }},
+                feedback_type: type,
+                rating: rating,
+                comment: comment
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            // Close modal
+            feedbackModal.hide();
+            
+            // Show success message (no Bootstrap dependency)
+            const alertDiv = document.createElement('div');
+            alertDiv.style.cssText = 'position: fixed; top: 80px; right: 20px; z-index: 9999; min-width: 300px; padding: 15px; border-radius: 8px; background: #d4edda; color: #155724; border: 1px solid #c3e6cb; box-shadow: 0 4px 12px rgba(0,0,0,0.15);';
+            alertDiv.innerHTML = `
+                <i class="fas fa-check-circle me-2"></i>${data.message || 'Thank you for your feedback!'}
+                <button type="button" onclick="this.parentElement.remove()" style="float: right; background: none; border: none; font-size: 20px; cursor: pointer; color: #155724;">&times;</button>
+            `;
+            document.body.appendChild(alertDiv);
+            
+            // Auto-remove after 3 seconds
+            setTimeout(() => {
+                if (alertDiv.parentElement) {
+                    alertDiv.remove();
+                }
+            }, 3000);
+            
+            // Reset form
+            document.getElementById('feedbackRating').value = '0';
+            document.getElementById('feedbackComment').value = '';
+            currentRating = 0;
+            document.querySelectorAll('.star').forEach(s => {
+                s.classList.remove('active');
+                s.style.color = '#ddd';
+            });
+        } else {
+            alert(data.error || 'Failed to submit feedback. Please try again.');
+        }
+    } catch (error) {
+        console.error('Feedback error:', error);
+        alert('Error submitting feedback. Please try again.');
+    }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Webpage</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f4f9; }
+        
+        .container { width: 500px; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        
+        /* Shuruat me baki sections ko chhupane ke liye */
+        .section { display: none; }
+        .section.active { display: block; }
+        
+        h2 { margin-bottom: 20px; color: #333; }
+        .content-area { margin-bottom: 20px; min-height: 150px; }
+        
+        button { padding: 10px 20px; font-size: 16px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        button.prev-btn { background-color: #6c757d; margin-right: 10px; }
+        button.prev-btn:hover { background-color: #5a6268; }
+        .btn-group { display: flex; justify-content: flex-end; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    
+    <div class="section active" id="step-1">
+        <h2>Section 1: Details</h2>
+        <div class="content-area">
+            
+
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Awareness - Digital Platform</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 15px;
+            line-height: 1.8;
+            color: #2c3e50;
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: white;
+            padding: 30px 35px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        h1 { 
+            color: #1a4480; 
+            text-align: center; 
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        .lang-selector {
+            text-align: center;
+            margin: 30px 0;
+            padding: 25px;
+            background: #e8f4fd;
+            border-radius: 10px;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+        }
+        .lang-btn {
+            background: #1a4480;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            margin: 8px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .lang-btn:hover { background: #ff6b35; }
+        .lang-btn.active { background: #ff6b35; }
+        h2 { 
+            color: #ffffff; 
+            background: #1a4480;
+            margin-top: 40px; 
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 22px;
+        }
+        h3 {
+            color: #ff6b35;
+            margin-top: 25px;
+            font-size: 19px;
+        }
+        .banner { 
+            background: linear-gradient(135deg, #1a4480, #3a6ea5); 
+            color: white; 
+            padding: 30px; 
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .section {
+            margin: 25px 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .point {
+            background: #f8fbff;
+            padding: 20px;
+            margin: 18px 0;
+            border-left: 5px solid #1a4480;
+            border-radius: 8px;
+        }
+        .point strong { color: #1a4480; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .stat-box { 
+            background: #fff8e1; 
+            padding: 20px; 
+            border-radius: 8px; 
+            text-align: center;
+            border: 1px solid #ffecb3;
+        }
+        .stat-box h3 { margin: 0; color: #e65100; font-size: 26px; }
+        .digital-box {
+            background: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            padding: 22px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        .btn {
+            display: block;
+            background: #ff6b35;
+            color: white;
+            padding: 18px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 35px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 13px;
+            color: #666;
+        }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        .content { display: none; }
+        .content.active { display: block; }
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .container { padding: 20px 15px; }
+            .lang-btn { display: block; width: 90%; margin: 10px auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗳️ Voter Awareness on Digital Platform</h1>
+        
+        <!-- Language Selector -->
+        <div class="lang-selector">
+            <h3 style="color:#1a4480; margin-top:0;">Choose Your Language / अपनी भाषा चुनें / आपली भाषा निवडा</h3>
+            <button class="lang-btn" onclick="changeLanguage('en', this)">English</button>
+            <button class="lang-btn active" onclick="changeLanguage('hi', this)">हिंदी</button>
+            <button class="lang-btn" onclick="changeLanguage('mr', this)">मराठी</button>
+        </div>
+
+        <!-- ENGLISH CONTENT -->
+        <div id="content-en" class="content">
+            <div class="banner">
+                <h3>“Democracy is by the people, for the people”</h3>
+                <p>And you are the 'people'. Without your vote, democracy is incomplete.</p>
+            </div>
+
+            <div class="section">
+                <h2>Part 1: Why is Voter ID Card Important?</h2>
+                <h3>1. Your Constitutional Right</h3>
+                <div class="point">
+                    <strong>Article 326</strong> of the Indian Constitution gives every adult citizen the right to vote, regardless of caste, religion, or gender. The Voter ID Card (EPIC) is legal proof that you are a responsible citizen of India. It's valid as ID and Address proof for 20+ government services like bank account, passport, SIM card.
+                </div>
+                <h3>2. Power of One Vote</h3>
+                <div class="point">
+                    History shows elections have been won or lost by 1 vote. In 2008, a Rajasthan seat was won by just 1 vote. In 1999, Atal Ji's government fell by 1 vote. Never think "What will my one vote do?". Your one vote can change the government.
+                </div>
+                <h3>3. Stops Fake Voting</h3>
+                <div class="point">
+                    Voter ID has your photo and unique EPIC number. This ensures one person, one vote. It makes elections clean, transparent and fair for everyone.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: What Happens If You Don't Vote?</h2>
+                <div class="stats-grid">
+                    <div class="stat-box"><h3>30 Cr+</h3><p>People did not vote in 2019 Lok Sabha elections</p></div>
+                    <div class="stat-box"><h3>1 Vote</h3><p>Has decided victory/defeat many times</p></div>
+                    <div class="stat-box"><h3>67.4%</h3><p>Was the voting percentage in 2019</p></div>
+                </div>
+                <div class="point">
+                    <strong>Wrong Policies May Be Made:</strong> MPs and MLAs make laws on education, jobs, taxes, roads. If 50% of youth aged 18-25 don't vote, why would the government make policies for them? Your vote forces the government to think about you.
+                </div>
+                <div class="point">
+                    <strong>NOTA is Also Power:</strong> If you don't like any candidate, press the NOTA button instead of not voting. This sends a message to the Election Commission that people want better options. Staying silent is not a solution.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Part 3: Digital Revolution - Now It's Easy</h2>
+                <div class="digital-box">
+                    <h3>Earlier vs Now: ECI Changed the Game</h3>
+                    <p><strong>Earlier:</strong> Find BLO, stand in long lines, fill forms manually, make 3-4 rounds.<br>
+                    <strong>Now:</strong> Pick up mobile, open App, apply in 5 minutes. Track status from home.</p>
+                </div>
+                <div class="point">
+                    <strong>1. Voter Helpline App:</strong> Your personal election assistant. Apply for new card, check family names in voter list, find polling booth, get candidate info, and file complaints. All in one place.
+                </div>
+                <div class="point">
+                    <strong>2. NVSP Portal - voters.eci.gov.in:</strong> ECI's official website. Fill Form 6, 7, 8 online. Upload documents as PDF/JPG. No agent, no bribe. 100% transparent process.
+                </div>
+                <div class="point">
+                    <strong>3. 1950 Toll-Free Helpline:</strong> Don't know English? No problem. Call 1950 and get all info in your language. Help for form filling to voter slip, everything free.
+                </div>
+            </div>
+            <a href="details.html" class="btn">Next Step: How to Apply for Voter Card Online? → Scan QR 2</a>
+        </div>
+
+        <!-- HINDI CONTENT -->
+        <div id="content-hi" class="content active">
+            <div class="banner">
+                <h3>“लोकतंत्र जनता का, जनता के लिए, जनता द्वारा शासन है”</h3>
+                <p>और इस 'जनता' में सबसे पहले नाम आपका आता है। अगर आप वोट नहीं देंगे, तो ये परिभाषा अधूरी रह जाएगी।</p>
+            </div>
+
+            <div class="section">
+                <h2>पहला भाग: वोटर ID कार्ड क्यों जरूरी है?</h2>
+                <h3>1. आपका संवैधानिक अधिकार</h3>
+                <div class="point">
+                    भारत के संविधान का <strong>अनुच्छेद 326</strong> हर वयस्क नागरिक को वोट का अधिकार देता है, चाहे वो किसी भी जाति, धर्म या लिंग का हो। वोटर ID कार्ड (EPIC) इस बात का कानूनी सबूत है कि आप भारत के जिम्मेदार नागरिक हैं। ये बैंक, पासपोर्ट, सिम कार्ड जैसी 20+ सरकारी सेवाओं में ID और Address Proof के तौर पर मान्य है।
+                </div>
+                <h3>2. एक वोट की ताकत</h3>
+                <div class="point">
+                    इतिहास गवाह है कि कई चुनाव 1 वोट से जीते या हारे गए हैं। 2008 में राजस्थान में एक सीट पर जीत का अंतर सिर्फ 1 वोट था। 1999 में अटल जी की सरकार 1 वोट से गिर गई थी। इसलिए कभी ये मत सोचिए कि "मेरे एक वोट से क्या होगा"। आपका एक वोट सरकार बदल सकता है।
+                </div>
+                <h3>3. फर्जी मतदान पर रोक</h3>
+                <div class="point">
+                    वोटर ID पर फोटो और यूनिक EPIC नंबर होता है। इससे सुनिश्चित होता है कि एक व्यक्ति एक ही बार वोट दे। ये चुनाव को साफ-सुथरा और निष्पक्ष बनाता है।
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>दूसरा भाग: अगर आप वोट नहीं देंगे तो क्या होगा?</h2>
+                <div class="stats-grid">
+                    <div class="stat-box"><h3>30 करोड़+</h3><p>लोग 2019 लोकसभा चुनाव में वोट डालने नहीं गए</p></div>
+                    <div class="stat-box"><h3>1 वोट</h3><p>से कई बार हार-जीत का फैसला हुआ है</p></div>
+                    <div class="stat-box"><h3>67.4%</h3><p>था 2019 का वोटिंग प्रतिशत</p></div>
+                </div>
+                <div class="point">
+                    <strong>गलत नीतियां बन सकती हैं:</strong> सांसद और विधायक ही शिक्षा नीति, रोजगार नीति, किसान कानून, टैक्स सब बनाते हैं। अगर 18-25 साल के 50% युवा वोट नहीं देंगे, तो सरकार युवाओं के लिए नीतियां क्यों बनाएगी? आपका वोट ही सरकार को मजबूर करता है कि वो आपके बारे में सोचे।
+                </div>
+                <div class="point">
+                    <strong>NOTA भी एक ताकत है:</strong> अगर आपको कोई भी उम्मीदवार पसंद नहीं, तो वोट न देने की बजाय NOTA - None of the Above का बटन दबाएं। ये चुनाव आयोग को संदेश देता है कि जनता को बेहतर विकल्प चाहिए। चुप रहना समाधान नहीं है।
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>तीसरा भाग: डिजिटल क्रांति - अब वोटर बनना चुटकियों का काम</h2>
+                <div class="digital-box">
+                    <h3>पहले vs अब: ECI ने गेम बदल दिया</h3>
+                    <p><strong>पहले:</strong> BLO को ढूंढो, लंबी लाइन में लगो, फॉर्म हाथ से भरो, 3-4 महीने चक्कर काटो।<br>
+                    <strong>अब:</strong> मोबाइल उठाओ, App खोलो, 5 मिनट में अप्लाई करो। Status भी घर बैठे ट्रैक करो।</p>
+                </div>
+                <div class="point">
+                    <strong>1. Voter Helpline App:</strong> ये App आपका पर्सनल चुनाव सहायक है। नया वोटर कार्ड बना सकते हैं, अपने परिवार का नाम लिस्ट में चेक कर सकते हैं, पोलिंग बूथ ढूंढ सकते हैं, उम्मीदवार की जानकारी ले सकते हैं, और शिकायत भी दर्ज कर सकते हैं। सब कुछ एक जगह।
+                </div>
+                <div class="point">
+                    <strong>2. NVSP Portal - voters.eci.gov.in:</strong> ECI की ऑफिशियल वेबसाइट। Form 6, 7, 8 सब ऑनलाइन भरे जाते हैं। डॉक्यूमेंट PDF या JPG में अपलोड करो। कोई एजेंट, कोई रिश्वत नहीं। 100% पारदर्शी।
+                </div>
+                <div class="point">
+                    <strong>3. 1950 टोल-फ्री हेल्पलाइन:</strong> अंग्रेजी नहीं आती? कोई बात नहीं। 1950 पर कॉल करें और अपनी भाषा में सारी जानकारी पाएं। फॉर्म भरने से लेकर वोटर स्लिप तक, हर मदद फ्री में।
+                </div>
+            </div>
+            <a href="details.html" class="btn">अगला कदम: वोटर कार्ड के लिए ऑनलाइन अप्लाई कैसे करें? → QR 2</a>
+        </div>
+
+        <!-- MARATHI CONTENT -->
+        <div id="content-mr" class="content">
+            <div class="banner">
+                <h3>“लोकशाही जनतेची, जनतेसाठी, जनतेद्वारे चालणारी व्यवस्था आहे”</h3>
+                <p>आणि या 'जनते'मध्ये सर्वात पहिले नाव तुमचे आहे. जर तुम्ही मतदान केले नाही, तर ही व्याख्या अपूर्ण राहील.</p>
+            </div>
+
+            <div class="section">
+                <h2>पहिला भाग: मतदार ओळखपत्र का महत्त्वाचे आहे?</h2>
+                <h3>1. तुमचा घटनात्मक अधिकार</h3>
+                <div class="point">
+                    भारतीय संविधानाचे <strong>कलम 326</strong> प्रत्येक प्रौढ नागरिकाला मतदानाचा अधिकार देते, मग तो कोणत्याही जाती, धर्म किंवा लिंगाचा असो. मतदार ओळखपत्र (EPIC) हा तुम्ही भारताचे जबाबदार नागरिक असल्याचा कायदेशीर पुरावा आहे. हे बँक, पासपोर्ट, सिम कार्ड यांसारख्या 20+ सरकारी सेवांसाठी ID आणि Address Proof म्हणून वैध आहे.
+                </div>
+                <h3>2. एका मताची ताकद</h3>
+                <div class="point">
+                    इतिहास साक्षी आहे की अनेक निवडणुका 1 मताने जिंकल्या किंवा हरल्या गेल्या आहेत. 2008 मध्ये राजस्थानमध्ये एका जागेवर विजयाचे अंतर फक्त 1 मत होते. 1999 मध्ये अटलजींचे सरकार 1 मताने पडले होते. म्हणून कधीही विचार करू नका की "माझ्या एका मताने काय होणार". तुमचे एक मत सरकार बदलू शकते.
+                </div>
+                <h3>3. बनावट मतदानाला आळा</h3>
+                <div class="point">
+                    मतदार ID वर फोटो आणि युनिक EPIC नंबर असतो. यामुळे एक व्यक्ती, एक मत सुनिश्चित होते. यामुळे निवडणूक स्वच्छ आणि निष्पक्ष होते.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>दुसरा भाग: जर तुम्ही मतदान केले नाही तर काय होईल?</h2>
+                <div class="stats-grid">
+                    <div class="stat-box"><h3>30 कोटी+</h3><p>लोक 2019 लोकसभा निवडणुकीत मतदानाला गेले नाहीत</p></div>
+                    <div class="stat-box"><h3>1 मत</h3><p>ने अनेक वेळा विजय-पराजय ठरवला आहे</p></div>
+                    <div class="stat-box"><h3>67.4%</h3><p>होती 2019 ची मतदान टक्केवारी</p></div>
+                </div>
+                <div class="point">
+                    <strong>चुकीची धोरणे बनू शकतात:</strong> खासदार आणि आमदारच शिक्षण धोरण, रोजगार धोरण, शेतकरी कायदे, कर सर्व बनवतात. जर 18-25 वर्षांचे 50% तरुण मतदान करणार नाहीत, तर सरकार तरुणांसाठी धोरणे का बनवेल? तुमचे मतच सरकारला तुमच्याबद्दल विचार करण्यास भाग पाडते.
+                </div>
+                <div class="point">
+                    <strong>NOTA ही सुद्धा ताकद आहे:</strong> जर तुम्हाला कोणताही उमेदवार आवडत नसेल, तर मतदान न करण्याऐवजी NOTA - None of the Above बटण दाबा. हे निवडणूक आयोगाला संदेश देते की जनतेला चांगले पर्याय हवे आहेत. गप्प राहणे हा उपाय नाही.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>तिसरा भाग: डिजिटल क्रांती - आता मतदार बनणे सोपे</h2>
+                <div class="digital-box">
+                    <h3>पूर्वी vs आता: ECI ने खेळ बदलला</h3>
+                    <p><strong>पूर्वी:</strong> BLO शोधा, लांब रांगेत उभे रहा, फॉर्म हाताने भरा, 3-4 महिने चकरा मारा.<br>
+                    <strong>आता:</strong> मोबाईल उचला, App उघडा, 5 मिनिटांत अर्ज करा. स्टेटसही घरबसल्या ट्रॅक करा.</p>
+                </div>
+                <div class="point">
+                    <strong>1. Voter Helpline App:</strong> हे App तुमचे वैयक्तिक निवडणूक सहाय्यक आहे. नवीन मतदार कार्ड बनवू शकता, कुटुंबाचे नाव यादीत तपासू शकता, मतदान केंद्र शोधू शकता, उमेदवाराची माहिती घेऊ शकता, आणि तक्रारही नोंदवू शकता. सर्व काही एकाच ठिकाणी.
+                </div>
+                <div class="point">
+                    <strong>2. NVSP Portal - voters.eci.gov.in:</strong> ECI ची अधिकृत वेबसाइट. फॉर्म 6, 7, 8 सर्व ऑनलाइन भरले जातात. कागदपत्रे PDF किंवा JPG मध्ये अपलोड करा. कोणताही एजंट, कोणतीही लाच नाही. 100% पारदर्शक.
+                </div>
+                <div class="point">
+                    <strong>3. 1950 टोल-फ्री हेल्पलाइन:</strong> इंग्रजी येत नाही? काही हरकत नाही. 1950 वर कॉल करा आणि तुमच्या भाषेत सर्व माहिती मिळवा. फॉर्म भरण्यापासून मतदार चिठ्ठीपर्यंत, प्रत्येक मदत मोफत.
+                </div>
+            </div>
+            <a href="details.html" class="btn">पुढील पायरी: मतदार कार्डसाठी ऑनलाइन अर्ज कसा करावा? → QR 2</a>
+        </div>
+        
+        <div class="footer">
+            भारत निर्वाचन आयोग | Election Commission of India | भारत निवडणूक आयोग<br>
+            #GoVerify #NoVoterToBeLeftBehind
+        </div>
+    </div>
+
+    <script>
+        function changeLanguage(lang, btnElement) {
+            // Hide all content divs
+            document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
+            // Remove active from all buttons
+            document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
+            
+            // Show selected content
+            document.getElementById('content-' + lang).classList.add('active');
+            // Add active to clicked button
+            btnElement.classList.add('active');
+            
+            // Update page lang attribute
+            document.documentElement.lang = lang;
+        }
+    </script>
+</body>
+
+            <input type="text" placeholder="Apna naam likhein..." style="width:100%; padding:8px; margin-top:10px;">
+        </div>
+        <div class="btn-group">
+            <button onclick="nextStep(2)">Next</button>
+        </div>
+    </div>
+
+    
+    <div class="section" id="step-2">
+        <h2>Section 2: Verification</h2>
+        <div class="content-area">
+            
+
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Awareness - Digital Platform</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 15px;
+            line-height: 1.8;
+            color: #2c3e50;
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: white;
+            padding: 30px 35px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        h1 { 
+            color: #1a4480; 
+            text-align: center; 
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        .lang-selector {
+            text-align: center;
+            margin: 30px 0;
+            padding: 25px;
+            background: #e8f4fd;
+            border-radius: 10px;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+        }
+        .lang-btn {
+            background: #1a4480;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            margin: 8px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .lang-btn:hover { background: #ff6b35; }
+        .lang-btn.active { background: #ff6b35; }
+        h2 { 
+            color: #ffffff; 
+            background: #1a4480;
+            margin-top: 40px; 
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 22px;
+        }
+        h3 {
+            color: #ff6b35;
+            margin-top: 25px;
+            font-size: 19px;
+        }
+        .banner { 
+            background: linear-gradient(135deg, #1a4480, #3a6ea5); 
+            color: white; 
+            padding: 30px; 
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .section {
+            margin: 25px 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .point {
+            background: #f8fbff;
+            padding: 20px;
+            margin: 18px 0;
+            border-left: 5px solid #1a4480;
+            border-radius: 8px;
+        }
+        .point strong { color: #1a4480; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .stat-box { 
+            background: #fff8e1; 
+            padding: 20px; 
+            border-radius: 8px; 
+            text-align: center;
+            border: 1px solid #ffecb3;
+        }
+        .stat-box h3 { margin: 0; color: #e65100; font-size: 26px; }
+        .digital-box {
+            background: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            padding: 22px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        .btn {
+            display: block;
+            background: #ff6b35;
+            color: white;
+            padding: 18px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 35px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 13px;
+            color: #666;
+        }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        .content { display: none; }
+        .content.active { display: block; }
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .container { padding: 20px 15px; }
+            .lang-btn { display: block; width: 90%; margin: 10px auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗳️ Voter Awareness on Digital Platform</h1>
+        
+        <!-- Language Selector -->
+        <div class="lang-selector">
+            <h3 style="color:#1a4480; margin-top:0;">Choose Your Language / अपनी भाषा चुनें / आपली भाषा निवडा</h3>
+            <button class="lang-btn" onclick="changeLanguage('en', this)">English</button>
+            <button class="lang-btn active" onclick="changeLanguage('hi', this)">हिंदी</button>
+            <button class="lang-btn" onclick="changeLanguage('mr', this)">मराठी</button>
+        </div>
+
+        <!-- ENGLISH CONTENT -->
+        <div id="content-en" class="content">
+            <div class="banner">
+                <h3>“Democracy is by the people, for the people”</h3>
+                <p>And you are the 'people'. Without your vote, democracy is incomplete.</p>
+            </div>
+
+            <div class="section">
+                <h2>Part 1: Why is Voter ID Card Important?</h2>
+                <h3>1. Your Constitutional Right</h3>
+                <div class="point">
+                    <strong>Article 326</strong> of the Indian Constitution gives every adult citizen the right to vote, regardless of caste, religion, or gender. The Voter ID Card (EPIC) is legal proof that you are a responsible citizen of India. It's valid as ID and Address proof for 20+ government services like bank account, passport, SIM card.
+                </div>
+                <h3>2. Power of One Vote</h3>
+                <div class="point">
+                    History shows elections have been won or lost by 1 vote. In 2008, a Rajasthan seat was won by just 1 vote. In 1999, Atal Ji's government fell by 1 vote. Never think "What will my one vote do?". Your one vote can change the government.
+                </div>
+                <h3>3. Stops Fake Voting</h3>
+                <div class="point">
+                    Voter ID has your photo and unique EPIC number. This ensures one person, one vote. It makes elections clean, transparent and fair for everyone.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: What Happens If You Don't Vote?</h2>
+                <div class="stats-grid">
+                    <div class="stat-box"><h3>30 Cr+</h3><p>People did not vote in 2019 Lok Sabha elections</p></div>
+                    <div class="stat-box"><h3>1 Vote</h3><p>Has decided victory/defeat many times</p></div>
+                    <div class="stat-box"><h3>67.4%</h3><p>Was the voting percentage in 2019</p></div>
+                </div>
+                <div class="point">
+                    <strong>Wrong Policies May Be Made:</strong> MPs and MLAs make laws on education, jobs, taxes, roads. If 50% of youth aged 18-25 don't vote, why would the government make policies for them? Your vote forces the government to think about you.
+                </div>
+                <div class="point">
+                    <strong>NOTA is Also Power:</strong> If you don't like any candidate, press the NOTA button instead of not voting. This sends a message to the Election Commission that people want better options. Staying silent is not a solution.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Part 3: Digital Revolution - Now It's Easy</h2>
+                <div class="digital-box">
+                    <h3>Earlier vs Now: ECI Changed the Game</h3>
+                    <p><strong>Earlier:</strong> Find BLO, stand in long lines, fill forms manually, make 3-4 rounds.<br>
+                    <strong>Now:</strong> Pick up mobile, open App, apply in 5 minutes. Track status from home.</p>
+                </div>
+                <div class="point">
+                    <strong>1. Voter Helpline App:</strong> Your personal election assistant. Apply for new card, check family names in voter list, find polling booth, get candidate info, and file complaints. All in one place.
+                </div>
+                <div class="point">
+                    <strong>2. NVSP Portal - voters.eci.gov.in:</strong> ECI's official website. Fill Form 6, 7, 8 online. Upload documents as PDF/JPG. No agent, no bribe. 100% transparent process.
+                </div>
+                <div class="point">
+                    <strong>3. 1950 Toll-Free Helpline:</strong> Don't know English? No problem. Call 1950 and get all info in your language. Help for form filling to voter slip, everything free.
+                </div>
+            </div>
+            <a href="details.html" class="btn">Next Step: How to Apply for Voter Card Online? → Scan QR 2</a>
+        </div>
+
+        <!-- HINDI CONTENT -->
+        <div id="content-hi" class="content active">
+            <div class="banner">
+                <h3>“लोकतंत्र जनता का, जनता के लिए, जनता द्वारा शासन है”</h3>
+                <p>और इस 'जनता' में सबसे पहले नाम आपका आता है। अगर आप वोट नहीं देंगे, तो ये परिभाषा अधूरी रह जाएगी।</p>
+            </div>
+
+            <div class="section">
+                <h2>पहला भाग: वोटर ID कार्ड क्यों जरूरी है?</h2>
+                <h3>1. आपका संवैधानिक अधिकार</h3>
+                <div class="point">
+                    भारत के संविधान का <strong>अनुच्छेद 326</strong> हर वयस्क नागरिक को वोट का अधिकार देता है, चाहे वो किसी भी जाति, धर्म या लिंग का हो। वोटर ID कार्ड (EPIC) इस बात का कानूनी सबूत है कि आप भारत के जिम्मेदार नागरिक हैं। ये बैंक, पासपोर्ट, सिम कार्ड जैसी 20+ सरकारी सेवाओं में ID और Address Proof के तौर पर मान्य है।
+                </div>
+                <h3>2. एक वोट की ताकत</h3>
+                <div class="point">
+                    इतिहास गवाह है कि कई चुनाव 1 वोट से जीते या हारे गए हैं। 2008 में राजस्थान में एक सीट पर जीत का अंतर सिर्फ 1 वोट था। 1999 में अटल जी की सरकार 1 वोट से गिर गई थी। इसलिए कभी ये मत सोचिए कि "मेरे एक वोट से क्या होगा"। आपका एक वोट सरकार बदल सकता है।
+                </div>
+                <h3>3. फर्जी मतदान पर रोक</h3>
+                <div class="point">
+                    वोटर ID पर फोटो और यूनिक EPIC नंबर होता है। इससे सुनिश्चित होता है कि एक व्यक्ति एक ही बार वोट दे। ये चुनाव को साफ-सुथरा और निष्पक्ष बनाता है।
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>दूसरा भाग: अगर आप वोट नहीं देंगे तो क्या होगा?</h2>
+                <div class="stats-grid">
+                    <div class="stat-box"><h3>30 करोड़+</h3><p>लोग 2019 लोकसभा चुनाव में वोट डालने नहीं गए</p></div>
+                    <div class="stat-box"><h3>1 वोट</h3><p>से कई बार हार-जीत का फैसला हुआ है</p></div>
+                    <div class="stat-box"><h3>67.4%</h3><p>था 2019 का वोटिंग प्रतिशत</p></div>
+                </div>
+                <div class="point">
+                    <strong>गलत नीतियां बन सकती हैं:</strong> सांसद और विधायक ही शिक्षा नीति, रोजगार नीति, किसान कानून, टैक्स सब बनाते हैं। अगर 18-25 साल के 50% युवा वोट नहीं देंगे, तो सरकार युवाओं के लिए नीतियां क्यों बनाएगी? आपका वोट ही सरकार को मजबूर करता है कि वो आपके बारे में सोचे।
+                </div>
+                <div class="point">
+                    <strong>NOTA भी एक ताकत है:</strong> अगर आपको कोई भी उम्मीदवार पसंद नहीं, तो वोट न देने की बजाय NOTA - None of the Above का बटन दबाएं। ये चुनाव आयोग को संदेश देता है कि जनता को बेहतर विकल्प चाहिए। चुप रहना समाधान नहीं है।
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>तीसरा भाग: डिजिटल क्रांति - अब वोटर बनना चुटकियों का काम</h2>
+                <div class="digital-box">
+                    <h3>पहले vs अब: ECI ने गेम बदल दिया</h3>
+                    <p><strong>पहले:</strong> BLO को ढूंढो, लंबी लाइन में लगो, फॉर्म हाथ से भरो, 3-4 महीने चक्कर काटो।<br>
+                    <strong>अब:</strong> मोबाइल उठाओ, App खोलो, 5 मिनट में अप्लाई करो। Status भी घर बैठे ट्रैक करो।</p>
+                </div>
+                <div class="point">
+                    <strong>1. Voter Helpline App:</strong> ये App आपका पर्सनल चुनाव सहायक है। नया वोटर कार्ड बना सकते हैं, अपने परिवार का नाम लिस्ट में चेक कर सकते हैं, पोलिंग बूथ ढूंढ सकते हैं, उम्मीदवार की जानकारी ले सकते हैं, और शिकायत भी दर्ज कर सकते हैं। सब कुछ एक जगह।
+                </div>
+                <div class="point">
+                    <strong>2. NVSP Portal - voters.eci.gov.in:</strong> ECI की ऑफिशियल वेबसाइट। Form 6, 7, 8 सब ऑनलाइन भरे जाते हैं। डॉक्यूमेंट PDF या JPG में अपलोड करो। कोई एजेंट, कोई रिश्वत नहीं। 100% पारदर्शी।
+                </div>
+                <div class="point">
+                    <strong>3. 1950 टोल-फ्री हेल्पलाइन:</strong> अंग्रेजी नहीं आती? कोई बात नहीं। 1950 पर कॉल करें और अपनी भाषा में सारी जानकारी पाएं। फॉर्म भरने से लेकर वोटर स्लिप तक, हर मदद फ्री में।
+                </div>
+            </div>
+            <a href="details.html" class="btn">अगला कदम: वोटर कार्ड के लिए ऑनलाइन अप्लाई कैसे करें? → QR 2</a>
+        </div>
+
+        <!-- MARATHI CONTENT -->
+        <div id="content-mr" class="content">
+            <div class="banner">
+                <h3>“लोकशाही जनतेची, जनतेसाठी, जनतेद्वारे चालणारी व्यवस्था आहे”</h3>
+                <p>आणि या 'जनते'मध्ये सर्वात पहिले नाव तुमचे आहे. जर तुम्ही मतदान केले नाही, तर ही व्याख्या अपूर्ण राहील.</p>
+            </div>
+
+            <div class="section">
+                <h2>पहिला भाग: मतदार ओळखपत्र का महत्त्वाचे आहे?</h2>
+                <h3>1. तुमचा घटनात्मक अधिकार</h3>
+                <div class="point">
+                    भारतीय संविधानाचे <strong>कलम 326</strong> प्रत्येक प्रौढ नागरिकाला मतदानाचा अधिकार देते, मग तो कोणत्याही जाती, धर्म किंवा लिंगाचा असो. मतदार ओळखपत्र (EPIC) हा तुम्ही भारताचे जबाबदार नागरिक असल्याचा कायदेशीर पुरावा आहे. हे बँक, पासपोर्ट, सिम कार्ड यांसारख्या 20+ सरकारी सेवांसाठी ID आणि Address Proof म्हणून वैध आहे.
+                </div>
+                <h3>2. एका मताची ताकद</h3>
+                <div class="point">
+                    इतिहास साक्षी आहे की अनेक निवडणुका 1 मताने जिंकल्या किंवा हरल्या गेल्या आहेत. 2008 मध्ये राजस्थानमध्ये एका जागेवर विजयाचे अंतर फक्त 1 मत होते. 1999 मध्ये अटलजींचे सरकार 1 मताने पडले होते. म्हणून कधीही विचार करू नका की "माझ्या एका मताने काय होणार". तुमचे एक मत सरकार बदलू शकते.
+                </div>
+                <h3>3. बनावट मतदानाला आळा</h3>
+                <div class="point">
+                    मतदार ID वर फोटो आणि युनिक EPIC नंबर असतो. यामुळे एक व्यक्ती, एक मत सुनिश्चित होते. यामुळे निवडणूक स्वच्छ आणि निष्पक्ष होते.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>दुसरा भाग: जर तुम्ही मतदान केले नाही तर काय होईल?</h2>
+                <div class="stats-grid">
+                    <div class="stat-box"><h3>30 कोटी+</h3><p>लोक 2019 लोकसभा निवडणुकीत मतदानाला गेले नाहीत</p></div>
+                    <div class="stat-box"><h3>1 मत</h3><p>ने अनेक वेळा विजय-पराजय ठरवला आहे</p></div>
+                    <div class="stat-box"><h3>67.4%</h3><p>होती 2019 ची मतदान टक्केवारी</p></div>
+                </div>
+                <div class="point">
+                    <strong>चुकीची धोरणे बनू शकतात:</strong> खासदार आणि आमदारच शिक्षण धोरण, रोजगार धोरण, शेतकरी कायदे, कर सर्व बनवतात. जर 18-25 वर्षांचे 50% तरुण मतदान करणार नाहीत, तर सरकार तरुणांसाठी धोरणे का बनवेल? तुमचे मतच सरकारला तुमच्याबद्दल विचार करण्यास भाग पाडते.
+                </div>
+                <div class="point">
+                    <strong>NOTA ही सुद्धा ताकद आहे:</strong> जर तुम्हाला कोणताही उमेदवार आवडत नसेल, तर मतदान न करण्याऐवजी NOTA - None of the Above बटण दाबा. हे निवडणूक आयोगाला संदेश देते की जनतेला चांगले पर्याय हवे आहेत. गप्प राहणे हा उपाय नाही.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>तिसरा भाग: डिजिटल क्रांती - आता मतदार बनणे सोपे</h2>
+                <div class="digital-box">
+                    <h3>पूर्वी vs आता: ECI ने खेळ बदलला</h3>
+                    <p><strong>पूर्वी:</strong> BLO शोधा, लांब रांगेत उभे रहा, फॉर्म हाताने भरा, 3-4 महिने चकरा मारा.<br>
+                    <strong>आता:</strong> मोबाईल उचला, App उघडा, 5 मिनिटांत अर्ज करा. स्टेटसही घरबसल्या ट्रॅक करा.</p>
+                </div>
+                <div class="point">
+                    <strong>1. Voter Helpline App:</strong> हे App तुमचे वैयक्तिक निवडणूक सहाय्यक आहे. नवीन मतदार कार्ड बनवू शकता, कुटुंबाचे नाव यादीत तपासू शकता, मतदान केंद्र शोधू शकता, उमेदवाराची माहिती घेऊ शकता, आणि तक्रारही नोंदवू शकता. सर्व काही एकाच ठिकाणी.
+                </div>
+                <div class="point">
+                    <strong>2. NVSP Portal - voters.eci.gov.in:</strong> ECI ची अधिकृत वेबसाइट. फॉर्म 6, 7, 8 सर्व ऑनलाइन भरले जातात. कागदपत्रे PDF किंवा JPG मध्ये अपलोड करा. कोणताही एजंट, कोणतीही लाच नाही. 100% पारदर्शक.
+                </div>
+                <div class="point">
+                    <strong>3. 1950 टोल-फ्री हेल्पलाइन:</strong> इंग्रजी येत नाही? काही हरकत नाही. 1950 वर कॉल करा आणि तुमच्या भाषेत सर्व माहिती मिळवा. फॉर्म भरण्यापासून मतदार चिठ्ठीपर्यंत, प्रत्येक मदत मोफत.
+                </div>
+            </div>
+            <a href="details.html" class="btn">पुढील पायरी: मतदार कार्डसाठी ऑनलाइन अर्ज कसा करावा? → QR 2</a>
+        </div>
+        
+        <div class="footer">
+            भारत निर्वाचन आयोग | Election Commission of India | भारत निवडणूक आयोग<br>
+            #GoVerify #NoVoterToBeLeftBehind
+        </div>
+    </div>
+
+    <script>
+        function changeLanguage(lang, btnElement) {
+            // Hide all content divs
+            document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
+            // Remove active from all buttons
+            document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
+            
+            // Show selected content
+            document.getElementById('content-' + lang).classList.add('active');
+            // Add active to clicked button
+            btnElement.classList.add('active');
+            
+            // Update page lang attribute
+            document.documentElement.lang = lang;
+        }
+    </script>
+</body>
+</html>
+        </div>
+        <div class="btn-group">
+            <button class="prev-btn" onclick="nextStep(1)">Back</button>
+            <button onclick="nextStep(3)">Next</button>
+        </div>
+    </div>
+
+    
+    <div class="section" id="step-3">
+        <h2>Section 3: Confirmation</h2>
+        <div class="content-area">
+            
+            
+
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Awareness - Digital Platform</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 15px;
+            line-height: 1.8;
+            color: #2c3e50;
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: white;
+            padding: 30px 35px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        h1 { 
+            color: #1a4480; 
+            text-align: center; 
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        .lang-selector {
+            text-align: center;
+            margin: 30px 0;
+            padding: 25px;
+            background: #e8f4fd;
+            border-radius: 10px;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+        }
+        .lang-btn {
+            background: #1a4480;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            margin: 8px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .lang-btn:hover { background: #ff6b35; }
+        .lang-btn.active { background: #ff6b35; }
+        h2 { 
+            color: #ffffff; 
+            background: #1a4480;
+            margin-top: 40px; 
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 22px;
+        }
+        h3 {
+            color: #ff6b35;
+            margin-top: 25px;
+            font-size: 19px;
+        }
+        .banner { 
+            background: linear-gradient(135deg, #1a4480, #3a6ea5); 
+            color: white; 
+            padding: 30px; 
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .section {
+            margin: 25px 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .point {
+            background: #f8fbff;
+            padding: 20px;
+            margin: 18px 0;
+            border-left: 5px solid #1a4480;
+            border-radius: 8px;
+        }
+        .point strong { color: #1a4480; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .stat-box { 
+            background: #fff8e1; 
+            padding: 20px; 
+            border-radius: 8px; 
+            text-align: center;
+            border: 1px solid #ffecb3;
+        }
+        .stat-box h3 { margin: 0; color: #e65100; font-size: 26px; }
+        .digital-box {
+            background: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            padding: 22px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        .btn {
+            display: block;
+            background: #ff6b35;
+            color: white;
+            padding: 18px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 35px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 13px;
+            color: #666;
+        }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        .content { display: none; }
+        .content.active { display: block; }
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .container { padding: 20px 15px; }
+            .lang-btn { display: block; width: 90%; margin: 10px auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗳️ Voter Awareness on Digital Platform</h1>
+        
+        <!-- Language Selector -->
+        <div class="lang-selector">
+            <h3 style="color:#1a4480; margin-top:0;">Choose Your Language / अपनी भाषा चुनें / आपली भाषा निवडा</h3>
+            <button class="lang-btn" onclick="changeLanguage('en', this)">English</button>
+            <button class="lang-btn active" onclick="changeLanguage('hi', this)">हिंदी</button>
+            <button class="lang-btn" onclick="changeLanguage('mr', this)">मराठी</button>
+        </div>
+
+        <!-- ENGLISH CONTENT -->
+        <div id="content-en" class="content">
+            <div class="banner">
+                <h3>“Democracy is by the people, for the people”</h3>
+                <p>And you are the 'people'. Without your vote, democracy is incomplete.</p>
+            </div>
+
+            <div class="section">
+                <h2>Part 1: Why is Voter ID Card Important?</h2>
+                <h3>1. Your Constitutional Right</h3>
+                <div class="point">
+                    <strong>Article 326</strong> of the Indian Constitution gives every adult citizen the right to vote, regardless of caste, religion, or gender. The Voter ID Card (EPIC) is legal proof that you are a responsible citizen of India. It's valid as ID and Address proof for 20+ government services like bank account, passport, SIM card.
+                </div>
+                <h3>2. Power of One Vote</h3>
+                <div class="point">
+                    History shows elections have been won or lost by 1 vote. In 2008, a Rajasthan seat was won by just 1 vote. In 1999, Atal Ji's government fell by 1 vote. Never think "What will my one vote do?". Your one vote can change the government.
+                </div>
+                <h3>3. Stops Fake Voting</h3>
+                <div class="point">
+                    Voter ID has your photo and unique EPIC number. This ensures one person, one vote. It makes elections clean, transparent and fair for everyone.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: What Happens If You Don't Vote?</h2>
+                <div class="stats-grid">
+                    <div class="stat-box"><h3>30 Cr+</h3><p>People did not vote in 2019 Lok Sabha elections</p></div>
+                    <div class="stat-box"><h3>1 Vote</h3><p>Has decided victory/defeat many times</p></div>
+                    <div class="stat-box"><h3>67.4%</h3><p>Was the voting percentage in 2019</p></div>
+                </div>
+                <div class="point">
+                    <strong>Wrong Policies May Be Made:</strong> MPs and MLAs make laws on education, jobs, taxes, roads. If 50% of youth aged 18-25 don't vote, why would the government make policies for them? Your vote forces the government to think about you.
+                </div>
+                <div class="point">
+                    <strong>NOTA is Also Power:</strong> If you don't like any candidate, press the NOTA button instead of not voting. This sends a message to the Election Commission that people want better options. Staying silent is not a solution.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Part 3: Digital Revolution - Now It's Easy</h2>
+                <div class="digital-box">
+                    <h3>Earlier vs Now: ECI Changed the Game</h3>
+                    <p><strong>Earlier:</strong> Find BLO, stand in long lines, fill forms manually, make 3-4 rounds.<br>
+                    <strong>Now:</strong> Pick up mobile, open App, apply in 5 minutes. Track status from home.</p>
+                </div>
+                <div class="point">
+                    <strong>1. Voter Helpline App:</strong> Your personal election assistant. Apply for new card, check family names in voter list, find polling booth, get candidate info, and file complaints. All in one place.
+                </div>
+                <div class="point">
+                    <strong>2. NVSP Portal - voters.eci.gov.in:</strong> ECI's official website. Fill Form 6, 7, 8 online. Upload documents as PDF/JPG. No agent, no bribe. 100% transparent process.
+                </div>
+                <div class="point">
+                    <strong>3. 1950 Toll-Free Helpline:</strong> Don't know English? No problem. Call 1950 and get all info in your language. Help for form filling to voter slip, everything free.
+                </div>
+            </div>
+            <a href="details.html" class="btn">Next Step: How to Apply for Voter Card Online? → Scan QR 2</a>
+        </div>
+
+        <!-- HINDI CONTENT -->
+        <div id="content-hi" class="content active">
+            <div class="banner">
+                <h3>“लोकतंत्र जनता का, जनता के लिए, जनता द्वारा शासन है”</h3>
+                <p>और इस 'जनता' में सबसे पहले नाम आपका आता है। अगर आप वोट नहीं देंगे, तो ये परिभाषा अधूरी रह जाएगी।</p>
+            </div>
+
+            <div class="section">
+                <h2>पहला भाग: वोटर ID कार्ड क्यों जरूरी है?</h2>
+                <h3>1. आपका संवैधानिक अधिकार</h3>
+                <div class="point">
+                    भारत के संविधान का <strong>अनुच्छेद 326</strong> हर वयस्क नागरिक को वोट का अधिकार देता है, चाहे वो किसी भी जाति, धर्म या लिंग का हो। वोटर ID कार्ड (EPIC) इस बात का कानूनी सबूत है कि आप भारत के जिम्मेदार नागरिक हैं। ये बैंक, पासपोर्ट, सिम कार्ड जैसी 20+ सरकारी सेवाओं में ID और Address Proof के तौर पर मान्य है।
+                </div>
+                <h3>2. एक वोट की ताकत</h3>
+                <div class="point">
+                    इतिहास गवाह है कि कई चुनाव 1 वोट से जीते या हारे गए हैं। 2008 में राजस्थान में एक सीट पर जीत का अंतर सिर्फ 1 वोट था। 1999 में अटल जी की सरकार 1 वोट से गिर गई थी। इसलिए कभी ये मत सोचिए कि "मेरे एक वोट से क्या होगा"। आपका एक वोट सरकार बदल सकता है।
+                </div>
+                <h3>3. फर्जी मतदान पर रोक</h3>
+                <div class="point">
+                    वोटर ID पर फोटो और यूनिक EPIC नंबर होता है। इससे सुनिश्चित होता है कि एक व्यक्ति एक ही बार वोट दे। ये चुनाव को साफ-सुथरा और निष्पक्ष बनाता है।
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>दूसरा भाग: अगर आप वोट नहीं देंगे तो क्या होगा?</h2>
+                <div class="stats-grid">
+                    <div class="stat-box"><h3>30 करोड़+</h3><p>लोग 2019 लोकसभा चुनाव में वोट डालने नहीं गए</p></div>
+                    <div class="stat-box"><h3>1 वोट</h3><p>से कई बार हार-जीत का फैसला हुआ है</p></div>
+                    <div class="stat-box"><h3>67.4%</h3><p>था 2019 का वोटिंग प्रतिशत</p></div>
+                </div>
+                <div class="point">
+                    <strong>गलत नीतियां बन सकती हैं:</strong> सांसद और विधायक ही शिक्षा नीति, रोजगार नीति, किसान कानून, टैक्स सब बनाते हैं। अगर 18-25 साल के 50% युवा वोट नहीं देंगे, तो सरकार युवाओं के लिए नीतियां क्यों बनाएगी? आपका वोट ही सरकार को मजबूर करता है कि वो आपके बारे में सोचे।
+                </div>
+                <div class="point">
+                    <strong>NOTA भी एक ताकत है:</strong> अगर आपको कोई भी उम्मीदवार पसंद नहीं, तो वोट न देने की बजाय NOTA - None of the Above का बटन दबाएं। ये चुनाव आयोग को संदेश देता है कि जनता को बेहतर विकल्प चाहिए। चुप रहना समाधान नहीं है।
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>तीसरा भाग: डिजिटल क्रांति - अब वोटर बनना चुटकियों का काम</h2>
+                <div class="digital-box">
+                    <h3>पहले vs अब: ECI ने गेम बदल दिया</h3>
+                    <p><strong>पहले:</strong> BLO को ढूंढो, लंबी लाइन में लगो, फॉर्म हाथ से भरो, 3-4 महीने चक्कर काटो।<br>
+                    <strong>अब:</strong> मोबाइल उठाओ, App खोलो, 5 मिनट में अप्लाई करो। Status भी घर बैठे ट्रैक करो।</p>
+                </div>
+                <div class="point">
+                    <strong>1. Voter Helpline App:</strong> ये App आपका पर्सनल चुनाव सहायक है। नया वोटर कार्ड बना सकते हैं, अपने परिवार का नाम लिस्ट में चेक कर सकते हैं, पोलिंग बूथ ढूंढ सकते हैं, उम्मीदवार की जानकारी ले सकते हैं, और शिकायत भी दर्ज कर सकते हैं। सब कुछ एक जगह।
+                </div>
+                <div class="point">
+                    <strong>2. NVSP Portal - voters.eci.gov.in:</strong> ECI की ऑफिशियल वेबसाइट। Form 6, 7, 8 सब ऑनलाइन भरे जाते हैं। डॉक्यूमेंट PDF या JPG में अपलोड करो। कोई एजेंट, कोई रिश्वत नहीं। 100% पारदर्शी।
+                </div>
+                <div class="point">
+                    <strong>3. 1950 टोल-फ्री हेल्पलाइन:</strong> अंग्रेजी नहीं आती? कोई बात नहीं। 1950 पर कॉल करें और अपनी भाषा में सारी जानकारी पाएं। फॉर्म भरने से लेकर वोटर स्लिप तक, हर मदद फ्री में।
+                </div>
+            </div>
+            <a href="details.html" class="btn">अगला कदम: वोटर कार्ड के लिए ऑनलाइन अप्लाई कैसे करें? → QR 2</a>
+        </div>
+
+        <!-- MARATHI CONTENT -->
+        <div id="content-mr" class="content">
+            <div class="banner">
+                <h3>“लोकशाही जनतेची, जनतेसाठी, जनतेद्वारे चालणारी व्यवस्था आहे”</h3>
+                <p>आणि या 'जनते'मध्ये सर्वात पहिले नाव तुमचे आहे. जर तुम्ही मतदान केले नाही, तर ही व्याख्या अपूर्ण राहील.</p>
+            </div>
+
+            <div class="section">
+                <h2>पहिला भाग: मतदार ओळखपत्र का महत्त्वाचे आहे?</h2>
+                <h3>1. तुमचा घटनात्मक अधिकार</h3>
+                <div class="point">
+                    भारतीय संविधानाचे <strong>कलम 326</strong> प्रत्येक प्रौढ नागरिकाला मतदानाचा अधिकार देते, मग तो कोणत्याही जाती, धर्म किंवा लिंगाचा असो. मतदार ओळखपत्र (EPIC) हा तुम्ही भारताचे जबाबदार नागरिक असल्याचा कायदेशीर पुरावा आहे. हे बँक, पासपोर्ट, सिम कार्ड यांसारख्या 20+ सरकारी सेवांसाठी ID आणि Address Proof म्हणून वैध आहे.
+                </div>
+                <h3>2. एका मताची ताकद</h3>
+                <div class="point">
+                    इतिहास साक्षी आहे की अनेक निवडणुका 1 मताने जिंकल्या किंवा हरल्या गेल्या आहेत. 2008 मध्ये राजस्थानमध्ये एका जागेवर विजयाचे अंतर फक्त 1 मत होते. 1999 मध्ये अटलजींचे सरकार 1 मताने पडले होते. म्हणून कधीही विचार करू नका की "माझ्या एका मताने काय होणार". तुमचे एक मत सरकार बदलू शकते.
+                </div>
+                <h3>3. बनावट मतदानाला आळा</h3>
+                <div class="point">
+                    मतदार ID वर फोटो आणि युनिक EPIC नंबर असतो. यामुळे एक व्यक्ती, एक मत सुनिश्चित होते. यामुळे निवडणूक स्वच्छ आणि निष्पक्ष होते.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>दुसरा भाग: जर तुम्ही मतदान केले नाही तर काय होईल?</h2>
+                <div class="stats-grid">
+                    <div class="stat-box"><h3>30 कोटी+</h3><p>लोक 2019 लोकसभा निवडणुकीत मतदानाला गेले नाहीत</p></div>
+                    <div class="stat-box"><h3>1 मत</h3><p>ने अनेक वेळा विजय-पराजय ठरवला आहे</p></div>
+                    <div class="stat-box"><h3>67.4%</h3><p>होती 2019 ची मतदान टक्केवारी</p></div>
+                </div>
+                <div class="point">
+                    <strong>चुकीची धोरणे बनू शकतात:</strong> खासदार आणि आमदारच शिक्षण धोरण, रोजगार धोरण, शेतकरी कायदे, कर सर्व बनवतात. जर 18-25 वर्षांचे 50% तरुण मतदान करणार नाहीत, तर सरकार तरुणांसाठी धोरणे का बनवेल? तुमचे मतच सरकारला तुमच्याबद्दल विचार करण्यास भाग पाडते.
+                </div>
+                <div class="point">
+                    <strong>NOTA ही सुद्धा ताकद आहे:</strong> जर तुम्हाला कोणताही उमेदवार आवडत नसेल, तर मतदान न करण्याऐवजी NOTA - None of the Above बटण दाबा. हे निवडणूक आयोगाला संदेश देते की जनतेला चांगले पर्याय हवे आहेत. गप्प राहणे हा उपाय नाही.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>तिसरा भाग: डिजिटल क्रांती - आता मतदार बनणे सोपे</h2>
+                <div class="digital-box">
+                    <h3>पूर्वी vs आता: ECI ने खेळ बदलला</h3>
+                    <p><strong>पूर्वी:</strong> BLO शोधा, लांब रांगेत उभे रहा, फॉर्म हाताने भरा, 3-4 महिने चकरा मारा.<br>
+                    <strong>आता:</strong> मोबाईल उचला, App उघडा, 5 मिनिटांत अर्ज करा. स्टेटसही घरबसल्या ट्रॅक करा.</p>
+                </div>
+                <div class="point">
+                    <strong>1. Voter Helpline App:</strong> हे App तुमचे वैयक्तिक निवडणूक सहाय्यक आहे. नवीन मतदार कार्ड बनवू शकता, कुटुंबाचे नाव यादीत तपासू शकता, मतदान केंद्र शोधू शकता, उमेदवाराची माहिती घेऊ शकता, आणि तक्रारही नोंदवू शकता. सर्व काही एकाच ठिकाणी.
+                </div>
+                <div class="point">
+                    <strong>2. NVSP Portal - voters.eci.gov.in:</strong> ECI ची अधिकृत वेबसाइट. फॉर्म 6, 7, 8 सर्व ऑनलाइन भरले जातात. कागदपत्रे PDF किंवा JPG मध्ये अपलोड करा. कोणताही एजंट, कोणतीही लाच नाही. 100% पारदर्शक.
+                </div>
+                <div class="point">
+                    <strong>3. 1950 टोल-फ्री हेल्पलाइन:</strong> इंग्रजी येत नाही? काही हरकत नाही. 1950 वर कॉल करा आणि तुमच्या भाषेत सर्व माहिती मिळवा. फॉर्म भरण्यापासून मतदार चिठ्ठीपर्यंत, प्रत्येक मदत मोफत.
+                </div>
+            </div>
+            <a href="details.html" class="btn">पुढील पायरी: मतदार कार्डसाठी ऑनलाइन अर्ज कसा करावा? → QR 2</a>
+        </div>
+        
+        <div class="footer">
+            भारत निर्वाचन आयोग | Election Commission of India | भारत निवडणूक आयोग<br>
+            #GoVerify #NoVoterToBeLeftBehind
+        </div>
+    </div>
+
+    <script>
+        function changeLanguage(lang, btnElement) {
+            // Hide all content divs
+            document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
+            // Remove active from all buttons
+            document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
+            
+            // Show selected content
+            document.getElementById('content-' + lang).classList.add('active');
+            // Add active to clicked button
+            btnElement.classList.add('active');
+            
+            // Update page lang attribute
+            document.documentElement.lang = lang;
+        }
+    </script>
+</body>
+</html>
+        </div>
+        <div class="btn-group">
+            <button class="prev-btn" onclick="nextStep(2)">Back</button>
+            <button onclick="alert('Form Submitted!')">Submit</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    
+    function nextStep(stepNumber) {
+        
+        document.querySelectorAll('.section').forEach(function(sec) {
+            sec.classList.remove('active');
+        });
+        
+        
+        document.getElementById('step-' + stepNumber).classList.add('active');
+    }
+</script>
+
+</body>
+</html>

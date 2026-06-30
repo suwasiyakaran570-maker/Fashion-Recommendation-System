@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Order Tracking{% endblock %}
+{% block content %}
+<h2>Order #{{ order.id }}</h2>
+<div class="row mt-4">
+    <div class="col-md-8">
+        <div class="card p-4">
+            <h4>Tracking: {{ order.tracking_number }}</h4>
+            <div class="tracking-timeline mt-4">
+                {% for track in tracking_history %}
+                <div class="tracking-item mb-4">
+                    <div class="d-flex">
+                        <div class="tracking-icon">
+                            <i class="fas fa-check-circle text-success"></i>
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="mb-1">{{ track.status.replace('_', ' ').title() }}</h6>
+                            <p class="text-muted mb-1">{{ track.message }}</p>
+                            <small class="text-muted">{{ track.created_at.strftime('%B %d, %Y %I:%M %p') }}</small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-4">
+            <h5>Order Details</h5>
+            <hr>
+            <p><strong>Total:</strong> ₹{{ "%.2f"|format(order.total_amount) }}</p>
+            <p><strong>Status:</strong> <span class="badge bg-success">{{ order.status }}</span></p>
+            <p><strong>Payment:</strong> {{ order.payment_method }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

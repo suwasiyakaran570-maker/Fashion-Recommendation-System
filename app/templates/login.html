@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Login – 🧣 Fabricji Fashion{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <div class="card shadow-lg" style="border-radius: 16px; overflow: hidden;">
+            <!-- Header -->
+            <div style="background: linear-gradient(135deg, #8B8589 0%, #5C5459 100%); padding: 32px 24px; text-align: center;">
+                <i class="fas fa-sign-in-alt fa-3x text-white mb-3"></i>
+                <h3 class="text-white mb-0">Welcome Back</h3>
+                <p class="text-white-50 mb-0">Sign in to your Fabricji account</p>
+            </div>
+
+            <div class="card-body p-4">
+                <!-- Flash Messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+                <form method="POST" action="{{ url_for('login') }}">
+                    <div class="mb-3">
+                        <label for="username" class="form-label fw-semibold">Username</label>
+                        <div class="input-group">
+                            <span class="input-group-text" style="background: #f0f0f0; border-radius: 8px 0 0 8px;">
+                                <i class="fas fa-user text-muted"></i>
+                            </span>
+                            <input type="text" class="form-control" id="username" name="username"
+                                   placeholder="Enter your username" required
+                                   style="border-radius: 0 8px 8px 0; padding: 10px 14px;">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label fw-semibold">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text" style="background: #f0f0f0; border-radius: 8px 0 0 8px;">
+                                <i class="fas fa-lock text-muted"></i>
+                            </span>
+                            <input type="password" class="form-control" id="password" name="password"
+                                   placeholder="Enter your password" required
+                                   style="border-radius: 0 8px 8px 0; padding: 10px 14px;">
+                        </div>
+                    </div>
+
+                    <!-- Forgot Password Link -->
+                    <div class="text-end mb-3">
+                        <a href="{{ url_for('forgot_password') }}" class="text-decoration-none" style="color: #8B8589; font-size: 0.88rem;">
+                            <i class="fas fa-key me-1"></i> Forgot Password?
+                        </a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold"
+                            style="background: linear-gradient(135deg, #8B8589 0%, #5C5459 100%); border: none; border-radius: 8px; font-size: 1rem;">
+                        <i class="fas fa-sign-in-alt me-2"></i> Login
+                    </button>
+                </form>
+
+                <!-- Divider -->
+                <div class="text-center mt-4 mb-3">
+                    <span class="text-muted" style="font-size: 0.85rem;">Don't have an account?</span>
+                </div>
+
+                <a href="{{ url_for('register') }}" class="btn w-100 py-2"
+                   style="border-radius: 8px; font-size: 0.95rem; border: 2px solid #8B8589; color: #5C5459;"> 
+                    <i class="fas fa-user-plus me-2"></i> Create Account
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
